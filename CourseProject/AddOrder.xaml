@@ -1,0 +1,236 @@
+﻿<Window x:Class="CourseProject.AddOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="AddOrder" Height="450" Width="400"
+        WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#0acffe" Offset="0"/>
+                    <GradientStop Color="#495aff" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Grid Height="60" VerticalAlignment="Top">
+            <TextBlock Text="Добавление заявки на ремонт"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="15"
+                       FontFamily="helvetica"
+                       FontWeight="Light"
+                       Foreground="White"
+                       />
+            <Button Click="ButtonCloseMain" Height="25" Width="25" Margin="340,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="BdM" Background="Transparent">
+                            <Path x:Name="PtM" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+                                  Stretch="Uniform" Stroke="White" StrokeThickness="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <Grid Height="390" VerticalAlignment="Bottom" Margin="0 0 0 0">
+            <Label
+                x:Name="attention"
+                Height="30"
+                Width="121"
+                Margin="0,-8,0,368"
+                Foreground="Red"
+                Visibility="Hidden"
+                >
+                Введите все данные
+            </Label>
+            <Label
+                Width="49"
+                Height="30"
+                Margin="40,28,311,332"
+                Foreground="White">
+                Клиент
+            </Label>
+            <ComboBox x:Name="ClientComboBox" 
+                            FontFamily="Helvetica"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,0,44,310"
+                            Cursor=""
+            />
+
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                 Margin="106,50,44,338"/>
+
+
+            <Label
+                Width="44"
+                Height="30"
+                Margin="40,75,316,285"
+                Foreground="White" RenderTransformOrigin="0.263,0.394">
+                Бренд
+            </Label>
+            <ComboBox
+                x:Name="Brand"
+                SelectionChanged="Brand_SelectionChanged"
+                FontFamily="Helvetica"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,70,44,285" 
+                            Cursor=""
+                
+                
+                />
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                Margin="106,93,44,285"/>
+
+
+            <Label
+                Width="44"
+                Height="30"
+                Margin="40,125,316,235"
+                Foreground="White" RenderTransformOrigin="0.47,0.289">
+                Тип
+            </Label>
+            <ComboBox
+                x:Name="TypeOfDevice"
+                SelectionChanged="Type_SelectionChanged"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,70,44,185" 
+                            Cursor=""
+                />
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                Margin="106,148,44,240"/>
+
+
+            <Label
+                Width="53"
+                Height="30"
+                Margin="40,175,307,185"
+                Foreground="White" RenderTransformOrigin="0.516,0.711">
+                Модель
+            </Label>
+            <ComboBox x:Name="Model"
+                      SelectionChanged="Model_SelectionChanged"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,70,44,85"
+                            IsEditable="False"
+                            />
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                 Margin="106,198,44,190"/>
+
+            <Label
+                Width="51"
+                Height="30"
+                Margin="40,222,309,138"
+                Foreground="White" RenderTransformOrigin="0.51,0.356">
+                Мастер
+            </Label>
+            <ComboBox x:Name="Master"
+                      FontFamily="Helvetica"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,70,44,-10"
+                            IsEditable="False"
+                            />
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                 Margin="106,246,44,142"/>
+            <Label
+                Width="51"
+                Height="30"
+                Margin="40,270,309,90"
+                Foreground="White">
+                Услуга
+            </Label>
+            <ComboBox x:Name="Work" FontFamily="Helvetica"
+                            FontWeight="Light"
+                            HorizontalAlignment="Center"
+                            Foreground="Black"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="250"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="106,265,44,90"
+                            IsEditable="False"
+                            />
+            <Border
+                Background="White"
+                Width="250"
+                Height="2"
+                Opacity="0.5"
+                 Margin="106,293,44,95"/>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,300,150,0" HorizontalAlignment="Center">
+                <Button Width="100" Content="Сбросить" Margin="0,25,0,25"
+                        Click="ClearOrder_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="150,300,0,0" HorizontalAlignment="Center">
+                <Button Width="100" Content="Добавить" Margin="0,25,0,25"
+                        Click="AddOrder_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

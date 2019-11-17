@@ -1,0 +1,314 @@
+﻿<Window x:Class="CourseProject.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="Window1" Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+    <Grid>
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#009FFD" Offset="0.0"/>
+                    <GradientStop Color="#2A2A72" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Grid Height="60" VerticalAlignment="Top"
+              Panel.ZIndex="1">
+            <TextBlock Text="Система учета заявок на ремонт" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Foreground="White" FontFamily="helvetica" Margin="376,25,376,0"
+                       FontWeight="Light"
+                       />
+            <Button Click="ButtonCloseMain" Height="25" Width="25" Margin="1020,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="BdM" Background="Transparent">
+                            <Path x:Name="PtM" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+                                  Stretch="Uniform" Stroke="White" StrokeThickness="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name = "cmdMinimizeMain" Click="CmdMinimizeMain_Click" Height="25" Width="15" Margin="970,0,0,0" VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="BdM" Background="Transparent">
+                            <Path x:Name="PtM" Data="M0,0 H1"
+                                  Stretch="Uniform" Stroke="White" StrokeThickness="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <Grid Width="220" HorizontalAlignment="Left" Background="White"
+              Panel.ZIndex="2">
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#009FFD" Margin="0 100 0 0" >
+                <ListViewItem x:Name="AddOrder" MouseDoubleClick="AddOrder_MouseDoubleClick">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="PersonPlus"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Margin="10"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="Black"/>
+                        <TextBlock Text="Заявки"
+                                       VerticalAlignment="Center"
+                                       Margin="10 10"
+                                       Foreground="Black"
+                                       FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="Order" MouseDoubleClick="AddClient_MouseDoubleClick">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Person"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Margin="10"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="Black"/>
+                        <TextBlock Text="Клиенты"
+                                       VerticalAlignment="Center"
+                                       Margin="10 10"
+                                       Foreground="Black"
+                                       FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="DeleteOrder" MouseDoubleClick="Devices_MouseDoubleClick">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CellphoneIphone"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Margin="10"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="Black"/>
+                        <TextBlock Text="Девайсы"
+                                       VerticalAlignment="Center"
+                                       Margin="10 10"
+                                       Foreground="Black"
+                                       FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="Masters" MouseDoubleClick="Masters_MouseDoubleClick">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Worker"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Margin="10"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="Black"/>
+                        <TextBlock Text="Мастера"
+                                       VerticalAlignment="Center"
+                                       Margin="10 10"
+                                       Foreground="Black"
+                                       FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="Works" MouseDoubleClick="Works_MouseDoubleClick">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Toolbox"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Margin="10"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="Black"/>
+                        <TextBlock Text="Услуги"
+                                       VerticalAlignment="Center"
+                                       Margin="10 10"
+                                       Foreground="Black"
+                                       FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+        <Grid Width="860" HorizontalAlignment="Right"
+              x:Name="Main"
+              >
+            <DataGrid
+                x:Name="MainDataGrid"
+                GridLinesVisibility="None"
+                Width="860" Height="440" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                CanUserSortColumns="False"
+                >
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+            <Grid Height="40"
+                  Margin="80,540,630,20">
+                <Button Width="150" Height="40"
+                    Content="Добавить клиента"
+                    Click="AddClientClick"
+                    />
+            </Grid>
+        </Grid>
+        <Grid Width="860" HorizontalAlignment="Right"
+              x:Name="Clients"
+              Visibility="Collapsed">
+            <DataGrid
+                x:Name="ClientsDataGrid"
+                GridLinesVisibility="None"
+                Width="860" Height="440" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                CanUserSortColumns="False"
+                AutoGenerateColumns="False">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="430"
+                                    Header="Имя клиента"
+                                    Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="430"
+                                    Header="Телефон"
+                                    Binding="{Binding Path=Phone}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Height="40"
+                  Margin="80,540,630,20">
+                <Button Width="150" Height="40"
+                    Content="Добавить клиента"
+                    Click="AddClientClick"
+                    />
+            </Grid>
+        </Grid>
+        <Grid Width="860" HorizontalAlignment="Right"
+              x:Name="Devices"
+              Visibility="Collapsed">
+            <DataGrid
+                x:Name="DevicesDataGrid"
+                GridLinesVisibility="None"
+                Width="860" Height="440" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                CanUserSortColumns="False"
+                AutoGenerateColumns="False">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="286"
+                                        Header="Тип устройства"
+                                        Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="286"
+                                        Header="Бренд"
+                                        Binding="{Binding Path=BrandName}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="288"
+                                        Header="Модель"
+                                        Binding="{Binding Path=Model}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Height="40"
+                  Margin="80,540,630,20">
+                <Button Width="150" Height="40"
+                    Content="Добавить девайс"
+                    Click="AddDeviceClick"
+                    />
+            </Grid>
+        </Grid>
+        <Grid Width="860" HorizontalAlignment="Right"
+              x:Name="Master"
+              Visibility="Hidden"
+              >
+            <DataGrid
+                x:Name="MasterDataGrid"
+                GridLinesVisibility="None"
+                Width="860" Height="440" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                CanUserSortColumns="False"
+                AutoGenerateColumns="False"
+                HorizontalScrollBarVisibility="Disabled"
+                >
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="286"
+                                        Header="Имя мастера"
+                                        Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="286"
+                                        Header="Телефон"
+                                        Binding="{Binding Path=Phone}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="288"
+                                        Header="ID-номер мастера"
+                                        Binding="{Binding Path=IDNumber}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Width="150" Height="40"
+                    Content="Добавить мастера"
+                    Margin="80,540,630,20"
+                    Click="AddMasterClick"
+                    />
+            <Button Width="150" Height="40"
+                    Content="Обновить"
+                    Margin="310,540,400,20"
+                    Click="RefreshClick"
+                    />
+        </Grid>
+        <Grid Width="860" HorizontalAlignment="Right"
+              x:Name="Work"
+              Visibility="Collapsed">
+            <DataGrid
+                x:Name="WorksDataGrid"
+                GridLinesVisibility="None"
+                Width="860" Height="440" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Foreground="White"
+                CanUserSortColumns="False"
+                AutoGenerateColumns="False">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="286"
+                                        Header="Услуга"
+                                        Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="286"
+                                        Header="Цена"
+                                        Binding="{Binding Path=Price}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="288"
+                                        Header="Модель устройства"
+                                        Binding="{Binding Path=Model}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Height="40"
+                  Margin="80,540,630,20">
+                <Button Width="150" Height="40"
+                    Content="Добавить услуги"
+                    Click="AddWorkClick"
+                    />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

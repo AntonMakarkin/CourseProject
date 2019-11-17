@@ -1,0 +1,130 @@
+﻿<Window x:Class="CourseProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="380"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#009FFD" Offset="0.0"/>
+                        <GradientStop Color="#2A2A72" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Button Click="ButtonClose" Height="25" Width="25" Margin="310,-170,0,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="Bd" Background="Transparent">
+                            <Path x:Name="Pt" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+                                  Stretch="Uniform" Stroke="White" StrokeThickness="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name = "cmdMinimize" Click="cmdMinimize_Click" Height="25" Width="15" Margin="260,-170,0,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="Bd" Background="Transparent">
+                            <Path x:Name="Pt" Data="M0,0 H1"
+                                  Stretch="Uniform" Stroke="White" StrokeThickness="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <StackPanel VerticalAlignment="Center">
+                
+                <Image Source="D:/CourseProject/CourseProject/Images/house.png" Width="80"/>
+                <TextBlock Text="Система учета заявок" 
+                       FontWeight="Light"
+                       FontFamily="helvetica"
+                       FontSize="22"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="20"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1">
+                <Label x:Name="attention"
+                       HorizontalContentAlignment="Center"
+                       Foreground="Red"
+                       Visibility="Hidden"
+                       >
+                    Введите логин или пароль
+                </Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="Login" FontFamily="Helvetica"
+                            FontWeight="Light"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="235"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="63,0,0,0" Cursor=""
+                            />
+                    <iconPacks:PackIconMaterial Kind="Account"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <PasswordBox x:Name="Password" FontFamily="Helvetica"
+                            FontWeight="Light"
+                            FontSize="20"
+                            HorizontalAlignment="Center"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="235"
+                            HorizontalContentAlignment="Left"
+                            Opacity="0.5"
+                            Height="25"
+                            Margin="63,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="Lock"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                       Height="2"
+                       Background="White"
+                       Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0" HorizontalAlignment="Center">
+                    <Button Click="LoginClick" Width="100" Height="40" Content="Войти"/>
+                </StackPanel>
+            </StackPanel>
+
+           
+        </Grid>
+    </Grid>
+</Window>
