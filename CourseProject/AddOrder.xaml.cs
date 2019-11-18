@@ -57,7 +57,7 @@ namespace CourseProject
             DataTable BrandDT = new DataTable();
             brandDA.Fill(BrandDT);
             Brand.SelectedValuePath = "id";
-            Brand.DisplayMemberPath = "BrandName";
+            Brand.DisplayMemberPath = "Name";
             Brand.ItemsSource = BrandDT.DefaultView;
             TypeOfDevice.IsEnabled = false;
             Model.IsEnabled = false;
@@ -128,18 +128,18 @@ namespace CourseProject
             //conn.Close();*/
             if(Brand.SelectedValue.ToString() != null)
             {
-                Model.IsEnabled = false;
                 string dbcon = @"Data Source = AddOrder.db; Version=3;";
-                string type_query_1 = "SELECT DISTINCT Devices.TypeId, Devices.BrandId, Types.id, Types.Name FROM Devices, Types WHERE Devices.TypeId = Types.id AND Devices.BrandID = @BrandID";
                 SQLiteConnection conn = new SQLiteConnection(dbcon);
+                //string type_query_1 = "SELECT DISTINCT Devices.TypeId, Devices.BrandId, Types.id, Types.Name FROM Devices, Types WHERE Devices.TypeId = Types.id AND Devices.BrandID = @BrandID";
+                string type_query_1 = "SELECT DISTINCT BrandID, Name FROM Types WHERE BrandID = @ID;";
+                SQLiteCommand type_query_command = new SQLiteCommand(type_query_1, conn);
                 conn.Open();
 
-                SQLiteCommand type_query_command = new SQLiteCommand(type_query_1, conn);
-                type_query_command.Parameters.AddWithValue("@BrandID", Brand.SelectedValue.ToString());
+                type_query_command.Parameters.AddWithValue("@ID", Brand.SelectedValue.ToString());
                 SQLiteDataAdapter TypeDA = new SQLiteDataAdapter(type_query_command);
                 DataTable TypeDT = new DataTable();
                 TypeDA.Fill(TypeDT);
-                TypeOfDevice.SelectedValuePath = "TypeId";
+                TypeOfDevice.SelectedValuePath = "BrandID";
                 TypeOfDevice.DisplayMemberPath = "Name";
                 TypeOfDevice.ItemsSource = TypeDT.DefaultView;
                 TypeOfDevice.IsEnabled = true;
@@ -200,21 +200,20 @@ namespace CourseProject
             if (TypeOfDevice.SelectedValue.ToString() != null)
             {
                 string dbcon = @"Data Source = AddOrder.db; Version=3;";
-                //string model_search = "SELECT * FROM Devices WHERE TypeId = @TypeID AND BrandId = @BrandID";
-                string model_search = "SELECT * FROM Devices WHERE TypeId = @TypeID AND BrandId = @BrandID";
                 SQLiteConnection conn = new SQLiteConnection(dbcon);
+                //string model_search = "SELECT * FROM Devices WHERE TypeId = @TypeID AND BrandId = @BrandID";
+                string model_search = "SELECT * FROM Models WHERE TypeID = @id;";
+                SQLiteCommand model_search_command = new SQLiteCommand(model_search, conn);
                 conn.Open();
 
-                SQLiteCommand model_search_command = new SQLiteCommand(model_search, conn);
-                model_search_command.Parameters.AddWithValue("@TypeID", TypeOfDevice.SelectedValue.ToString());
-                model_search_command.Parameters.AddWithValue("@BrandID", Brand.SelectedValue.ToString());
+                model_search_command.Parameters.AddWithValue("@id", TypeOfDevice.SelectedValue.ToString());
                 SQLiteDataAdapter ModelDA = new SQLiteDataAdapter(model_search_command);
                 DataTable ModelDT = new DataTable();
                 ModelDA.Fill(ModelDT);
-                Model.SelectedValuePath = "id";
-                Model.DisplayMemberPath = "Model";
+                Model.SelectedValuePath = "TypeID";
+                Model.DisplayMemberPath = "ModelName";
                 Model.ItemsSource = ModelDT.DefaultView;
-                Brand.IsEnabled = false;
+                //Brand.IsEnabled = false;
                 Model.IsEnabled = true;
                 Work.IsEnabled = false;
             }

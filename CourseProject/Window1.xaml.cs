@@ -129,7 +129,9 @@ namespace CourseProject
             Master.Visibility = Visibility.Collapsed;
             Devices.Visibility = Visibility.Collapsed;
             string dbcon = "Data Source = AddOrder.db; Version = 3";
-            string query = "SELECT Works.Name, Works.Price, Works.DeviceID, Devices.id, Devices.Model FROM Works, Devices WHERE DeviceID = Devices.id;";
+            //string query = "SELECT Works.Name, Works.Price, Works.DeviceID, Devices.id, Devices.Model FROM Works, Devices WHERE DeviceID = Devices.id;";
+            //string query = "SELECT DISTINCT Brands.id, Brands.Name, Types.id, Types.Name, Types.BrandID, Models.TypeID, Models.ModelName, Works.id, Works.WorkName, Works.Price, Works.ModelID FROM Brands, Types, Models, Works WHERE ModelID = Models.id;";
+            string query = "SELECT DISTINCT  Models.TypeID, Models.ModelName, Works.id, Works.WorkName, Works.Price, Works.ModelID FROM Models, Works WHERE ModelID = Models.id;";
             SQLiteConnection connection = new SQLiteConnection(dbcon);
             connection.Open();
             SQLiteCommand select_command = new SQLiteCommand(query, connection);
@@ -148,6 +150,7 @@ namespace CourseProject
             Work.Visibility = Visibility.Collapsed;
             string dbcon = "Data Source = AddOrder.db; Version = 3";
             //string query = "SELECT Тип,Бренд,Модель FROM Devices";
+            //string query = "SELECT Types.Name, Brands.BrandName, Devices.Model From Brands INNER JOIN(Types INNER JOIN Devices ON Types.id = Devices.TypeId) ON Brands.id = Devices.BrandId";
             string query = "SELECT Types.Name, Brands.BrandName, Devices.Model From Brands INNER JOIN(Types INNER JOIN Devices ON Types.id = Devices.TypeId) ON Brands.id = Devices.BrandId";
             SQLiteConnection connection = new SQLiteConnection(dbcon);
             connection.Open();

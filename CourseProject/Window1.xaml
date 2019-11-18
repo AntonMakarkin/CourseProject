@@ -293,13 +293,13 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="286"
                                         Header="Услуга"
-                                        Binding="{Binding Path=Name}"></DataGridTextColumn>
+                                        Binding="{Binding Path=WorkName}"></DataGridTextColumn>
                     <DataGridTextColumn Width="286"
-                                        Header="Цена"
+                                        Header="Цена (в рублях)"
                                         Binding="{Binding Path=Price}"></DataGridTextColumn>
                     <DataGridTextColumn Width="288"
                                         Header="Модель устройства"
-                                        Binding="{Binding Path=Model}"></DataGridTextColumn>
+                                        Binding="{Binding Path=ModelName}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Height="40"
